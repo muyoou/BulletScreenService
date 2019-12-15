@@ -1,0 +1,63 @@
+package BDconn;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/*
+ * BDmanage数据库连接（全静态）
+ * DO：用于连接MySQL数据库
+ * @author 
+ */
+
+public class BDmanage {
+	
+    protected Statement stmt = null;
+    //数据库用户名和密码
+    static final String USER = "";
+    static final String PASS = "";
+    //数据库驱动和url
+    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+    static final String DB_URL = "jdbc:mysql://localhost:3306/bdname";
+	
+	//注册 JDBC 驱动,并连接数据库
+	public static Connection GetConnect() {
+		try {
+			Class.forName(JDBC_DRIVER);
+			Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+			return conn;
+		} catch (ClassNotFoundException e) {
+			// TODO 驱动导入错误处理
+			e.printStackTrace();
+		}catch (SQLException e) {
+			// TODO 数据库连接错误处理
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	//TODO 执行SQL语句
+	public static ResultSet ExecuteSQL(String SQL) {return null;}
+	
+	
+	//TODO 查看是否有更新的数据（弹幕）
+	//写不写无所谓
+	//@param  已经导入的最新一条的id
+	//@return 新数据的条数
+	public static int HaveNew(String tablename,int id) {return 0;}
+	
+	//TODO 返回更新数据（弹幕）
+	//@param  id:已经导入的最新一条的id
+	//@param  tablename:表名（视频名）
+	//@return 新数据的二维数组，无数据返回null
+	public static String[][] GetNew(String tablename,int id){
+		Connection connection=GetConnect();
+		return null;
+	}
+	
+	//TODO 插入新的弹幕到表中
+	//@param 内容，时间，颜色，用户ip
+	public static void InsertNew (String content,int time,int color,String ip) {}
+}

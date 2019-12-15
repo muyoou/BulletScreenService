@@ -1,0 +1,42 @@
+package Socket;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+
+/*
+ * SocketThread消息拉取，回复线程
+ * DO：用于接受客户端消息，并调用其他处理类后返回消息
+ * @author muyoo
+ */
+
+public class SocketThread implements Runnable {
+	Socket socket;
+	public SocketThread(Socket socket) {this.socket=socket;}
+	@Override
+	public void run() {
+		try {
+            InputStream inputStream = socket.getInputStream();
+            byte[] bytes = new byte[1024];
+            int len;
+            StringBuilder sb = new StringBuilder();
+            while ((len = inputStream.read(bytes)) != -1) {
+            	
+              sb.append(new String(bytes, 0, len, "UTF-8"));
+            }
+            System.out.println("get message from client: " + sb);
+            inputStream.close();
+            
+            OutputStream outputStream = this.socket.getOutputStream();
+            String receipt = "We received your message: ";
+            outputStream.write(receipt.getBytes("UTF-8"));
+            outputStream.close();
+            
+            socket.close();
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+		
+	}
+
+}

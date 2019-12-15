@@ -1,0 +1,14 @@
+package Socket;
+
+import java.net.ServerSocket;
+
+/*
+ * m 程序主入口
+ * m 线程分配
+ */
+public class ThreadStart {
+	public static void main(String[] args) throws Exception {
+		int port = 55533;
+	    ServerSocket server = new ServerSocket(port);
+	}
+}

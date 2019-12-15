@@ -1,0 +1,7 @@
+package Socket;
+
+import java.util.HashMap;
+
+public class IndexData {
+	private static HashMap<Integer, Integer> data=new HashMap<Integer, Integer>();
+}

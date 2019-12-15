@@ -1,0 +1,11 @@
+package BDconn;
+
+/*
+ * BDmanage数据库连接
+ * DO：用于连接MySQL数据库
+ * @author 
+ */
+
+public class BDmanage {
+
+}

@@ -1,0 +1,44 @@
+package BDconn;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+/*
+ * BDmanage数据库连接抽象类
+ * DO：用于连接MySQL数据库
+ * @author 
+ */
+
+public abstract class BDmanage {
+	
+	protected Connection conn = null;
+    protected Statement stmt = null;
+    //数据库用户名和密码
+    static final String USER = "";
+    static final String PASS = "";
+	//TODO 注册 JDBC 驱动,并连接数据库
+	public BDmanage() {
+		
+	}
+	
+	//TODO 执行SQL语句
+	protected abstract ResultSet ExecuteSQL(String SQL);
+	
+	//TODO 查看是否有更新的数据（弹幕）
+	//@param  已经导入的最新一条的id
+	//@return 新数据的条数
+	public abstract int HaveNew(int id);
+	
+	//TODO 返回更新数据（弹幕）
+	//@param  已经导入的最新一条的id
+	//@return 新数据的二维数组
+	public abstract String[][] GetNew(int id);
+	
+	
+	
+	
+	//TODO 关闭数据库
+	public abstract void CLoseBD() ;
+}
